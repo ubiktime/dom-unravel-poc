@@ -19,6 +19,9 @@ document.body.appendChild(pill);
 
 let active = false;
 let busy = false;
+   let touchMoved = false;
+   document.addEventListener("touchstart", () => { touchMoved = false; }, { passive: true });
+   document.addEventListener("touchmove", () => { touchMoved = true; }, { passive: true });
 
 const presets = {
   1: { tx: -46, ty: -30, tz: 90, rx: 8, ry: -7 },
@@ -100,11 +103,15 @@ function cancelIfActive() {
   deactivate();
 }
 
-toggle.addEventListener("click", async () => {
-  if (busy) return;
-  busy = true;
+   toggle.addEventListener("click", async () => {
+     if (busy) return;
+     busy = true;
 
-  if (!active) {
+     if (document.fonts && document.fonts.ready) {
+       await document.fonts.ready;
+     }
+
+     if (!active) {
     buildClones();
     await waitFrames();
     explode();
@@ -122,6 +129,7 @@ pill.addEventListener("click", () => {
 });
 
 overlay.addEventListener("click", () => {
+  if (touchMoved) return;
   if (!active || busy) return;
   busy = true;
   deactivate();
