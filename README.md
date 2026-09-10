@@ -2,7 +2,7 @@
 
 A minimalist, zero-dependency proof-of-concept demonstrating how to execute a "DOM explosion" effect without the performance cliffs and layout thrashing associated with live DOM mutation.
 
-**Live Demo:** `[Insert your dom-unravel-poc.pages.dev URL here]`
+**Live Demo:** `https://github.com/ubiktime/dom-unravel-poc`
 
 ## The Strategic Problem
 
