@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DOM Unravel — Controlled Hero Proof-of-Concept</title>
+  <meta name="description" content="A minimal proof-of-concept for a controlled DOM unravel effect in a hero section." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <main>
+    <section class="hero" data-unravel>
+      <div class="hero-inner">
+        <p class="eyebrow" data-dom-label data-depth="1">
+          Design engineering
+        </p>
+
+        <h1 data-dom-label data-depth="2">
+          We make interfaces feel inevitable.
+        </h1>
+
+        <p class="lede" data-dom-label data-depth="2">
+          This hero is a controlled demonstration. Press the button to expose
+          the structure underneath, then reassemble it.
+        </p>
+
+        <div class="cta-row" data-dom-label data-depth="3">
+          <button class="btn btn-primary" type="button" data-unravel-toggle aria-pressed="false">
+            Unravel hero
+          </button>
+          <a class="btn btn-secondary" href="#common">Plain explanation</a>
+          <a class="btn btn-secondary" href="#nerdy">Nerdy explanation</a>
+        </div>
+
+        <aside class="hero-card" data-dom-label data-depth="3">
+          <span class="hero-card-title">Component layer</span>
+          <span class="hero-card-note">A controlled box, not the whole DOM.</span>
+        </aside>
+      </div>
+    </section>
+
+    <section id="common" class="copy">
+      <h2>Plain-English explanation</h2>
+      <p>
+        When you press <strong>Unravel hero</strong>, the page does not tear
+        itself apart. It takes a temporary snapshot of a few key boxes in this
+        hero area, lifts them into a separate visual layer, separates them in
+        space, and then puts them back.
+      </p>
+      <p>
+        The point is to show how design works: before a screen looks polished,
+        it is made of structure, hierarchy, spacing, and components. The
+        effect dramatises that idea without breaking the actual page.
+      </p>
+    </section>
+
+    <section id="nerdy" class="copy">
+      <h2>Nerdy explanation</h2>
+      <p>
+        This proof-of-concept avoids mutating the live DOM. On trigger,
+        JavaScript measures selected elements with
+        <code>getBoundingClientRect()</code>, creates fixed-position clones in
+        an <code>aria-hidden</code> overlay, and stores their positions and
+        explosion vectors in CSS custom properties.
+      </p>
+      <p>
+        The overlay applies <code>perspective</code>, and the clones animate
+        only <code>transform</code> and <code>opacity</code>. The original
+        hero receives a ghost state. This keeps the effect scoped, reversible,
+        and much safer than trying to explode a real production DOM.
+      </p>
+    </section>
+        <footer class="site-footer">
+      <p>
+        Designed by
+        <a href="https://proper-pages.pages.dev/" target="_blank" rel="noopener noreferrer">Proper Pages</a>
+        and QWEN 3.8-Max | September 2026
+      </p>
+    </footer>
+  </main>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
